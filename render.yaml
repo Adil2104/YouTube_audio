@@ -3,6 +3,5 @@ services:
     name: youtube_audio
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "pythone rezka_bot.py"
-    runtime: python
-    pythonVersion: 3.11
+    startCommand: "python rezka_bot.py"
+    pythonVersion: 3.10.13
