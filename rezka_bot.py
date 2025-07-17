@@ -13,7 +13,7 @@ from yt_dlp import YoutubeDL
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-API_TOKEN = "8082001963:AAGNa94WvuF23kfJhfE7xEp8BvVbf3ATqeA"
+API_TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 
