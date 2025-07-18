@@ -1,5 +1,8 @@
 [phases.setup]
-nixPkgs = ["ffmpeg", "python310"]
+nixPkgs = ["ffmpeg", "python313"]
 
 [phases.install]
-cmds = ["pip install -r requirements.txt"]
+cmds = ["python3.13 -m pip install -r requirements.txt"]
+
+[start]
+cmd = "python3.13 rezka_bot.py"
