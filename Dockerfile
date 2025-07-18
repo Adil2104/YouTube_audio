@@ -1,24 +1,18 @@
-# Базовый образ с Python 3.13 (неофициальный, но доступен через deadsnakes PPA)
-FROM ubuntu:22.04
+# Используем официальный образ Python 3.13
+FROM python:3.13-rc-bullseye
 
-# Обновление и установка зависимостей
-RUN apt-get update && apt-get install -y \
-    software-properties-common \
-    && add-apt-repository ppa:deadsnakes/ppa \
-    && apt-get update && apt-get install -y \
-    python3.13 python3.13-venv python3.13-distutils \
-    ffmpeg curl git build-essential
+# Устанавливаем ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
 
-# Установка pip
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13
-
-# Копирование файлов
+# Устанавливаем рабочую директорию
 WORKDIR /app
-COPY . /app
 
-# Установка зависимостей
-RUN python3.13 -m pip install --upgrade pip
-RUN python3.13 -m pip install -r requirements.txt
+# Копируем все файлы проекта
+COPY . .
+
+# Устанавливаем зависимости
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
 # Запуск бота
-CMD ["python3.13", "rezka_bot.py"]
+CMD ["python", "rezka_bot.py"]
